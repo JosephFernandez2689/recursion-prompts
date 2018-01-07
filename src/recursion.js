@@ -26,32 +26,32 @@ var factorial = function(n) {
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
 
-//base and break case
-if(array.length === 0){
-  return 0;
-}
+  //base and break case
+  if(array.length === 0){
+    return 0;
+  }
 
-//recursion case
+  //recursion case
 
-return array[0] + sum(array.slice(1))
+  return array[0] + sum(array.slice(1))
 
-/* Termination case
-if(array === undefined){
-  console.log(i);
-  return null;
-}
-//base case
-if(i === array.length -1 ){
-  return  array.slice(1);
-}
-//recursive case
-return array + sum(i)*/
+  /* Termination case
+  if(array === undefined){
+    console.log(i);
+    return null;
+  }
+  //base case
+  if(i === array.length -1 ){
+    return  array.slice(1);
+  }
+  //recursive case
+  return array + sum(i)*/
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
-var total = 0;
+  var total = 0;
   //base and break case
   if(array.length === 0){
     return 0;
@@ -63,17 +63,43 @@ var total = 0;
 
 // 4. Check if a number is even.
 var isEven = function(n) {
-};
+  if(n < 0){
+    return isEven(Math.abs(n));
+  }
+  //  return n === 0 ? true : n === 1 ? false : isEven(n -2);
+  //};
 
+  if (n === 0){
+    return true;
+  }
+  if (n === 1){
+    return false;
+  }
+  return isEven(n - 2);
+};
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  if (Math.abs(n) <= 1){
+    return 0;
+  }
+
+if(n < 0){
+  return -(Math.abs(n) - 1 + sumBelow(Math.abs(n) - 1))
+}
+return n -1 + sumBelow(n-1);
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  if(x < y){
+
+  }
+  if(x>y){
+    
+  }
 };
 
 // 7. Compute the exponent of a number.
