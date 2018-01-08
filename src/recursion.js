@@ -51,7 +51,7 @@ var sum = function(array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
-  var total = 0;
+
   //base and break case
   if(array.length === 0){
     return 0;
@@ -94,13 +94,29 @@ return n -1 + sumBelow(n-1);
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
-  if(x < y){
-
+  var results = [];
+  debugger
+  if(x === y || x === y - 1 || x === y + 1){
+      return results;
   }
-  if(x>y){
-    
+  if (x < y){
+    results.push(x+1);
+    return results.concat(range(x + 1,y));
   }
+  if(x > y){
+    results.push(x-1);
+    return results.concat(range(x - 1,y));
+  }
+return results;
 };
+
+/*var results = [];
+if(x === y){
+    return results;
+}
+results.push(x);
+return  results.concat(range(x + 1,y));
+}*/
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
@@ -108,6 +124,10 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+if (exp === 0){
+  return 1;
+    else base * power(base, exponent - 1);
+  }
 };
 
 // 8. Determine if a number is a power of two.
