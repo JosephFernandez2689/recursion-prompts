@@ -196,7 +196,6 @@ var modulo = function(x, y) {
      if (-x < y) {
        return x;
      }
-     <!-- 'recursive case 1' -->
      return modulo(x + y, y);
    } else {
      if (x < y) {
@@ -204,36 +203,33 @@ var modulo = function(x, y) {
      }
    }
 
-   <!--'recursive case 2'-->
    return modulo(x - y, y);
   };
 
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
+
 var multiply = function(x, y) {
   if (x === 0 || y === 0) {
-     return 0;
-   //recursive cases
-   } else if (y < 0) {
-     return -x + multiply(x, y + 1);
-   } else {
-     return x + multiply(x, y - 1);
-   }
+    return 0;
+  } else if (y < 0) {
+    return -x + multiply(x, y + 1);
+  } else {
+    return x + multiply(x, y - 1);
+  }
 };
-
-
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods.
 var divide = function(x, y) {
-  //base cases
+
  if (y === 0) { return NaN; }
  if (x === 0) { return 0; }
  if (x < 0 && y > 0 && -x < y || x < -y) { return 0; }
  if (x > 0 && y > 0 && x < y) { return 0; }
 
- //recursive cases
+
  if (x > 0 && y > 0) {
    return 1 + divide(x - y, y);
  } else {
@@ -248,13 +244,25 @@ var divide = function(x, y) {
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function(x, y) {
+
+  if (x < 0 || y < 0) {
+    return null;
+  }
+ if (y % x === 0) {
+   return x;
+  }
+
+
+ return x > y ? gcd(y, x) : gcd(x, y % x);
 };
+
 
 // 15. Write a function that compares each character of two strings and returns true if
 // both are identical.
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
@@ -278,7 +286,21 @@ var buildList = function(value, length) {
 // For numbers which are multiples of both three and five, output “FizzBuzz” instead of the number.
 // fizzBuzz(5) // ['1','2','Fizz','4','Buzz']
 var fizzBuzz = function(n) {
+ var results = [];
+ var val = n;
+
+ // base case
+ if (n === 0) { return results; }
+
+ // recursive cases
+ if (n % 3 === 0 && n % 5 !== 0) { val = 'Fizz'; }
+ if (n % 3 !== 0 && n % 5 === 0) { val = 'Buzz'; }
+ if (n % 3 === 0 && n % 5 === 0) { val = 'FizzBuzz'; }
+ results.push(val.toString());
+
+ return fizzBuzz(n - 1).concat(results);
 };
+
 
 // 20. Count the occurence of a value in a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
