@@ -276,18 +276,38 @@ var compareStr = function(str1, str2) {
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function(str) {
-
+  if (str.length === 0) {
+     return [];
+   }
+   return [str[0]].concat(createArray(str.slice(1)));
+   if (str.length === 1) {
+     return array.concat(str[0]);
+   }
+   return array.concat(str[0], createArray(str.slice(1)));
 };
 
 // 17. Reverse the order of an array
 var reverseArr = function(array) {
+  if(array.length === 1) {
+    return array;
+  } else {
+    return [array[array.length-1]].concat(reverseArr(array.slice(0, array.length-1)))
+  }
+  return reverseArr(array);
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+  let array = [];
+if(length === 0) {
+  return array;
+}
+array.push(value);
+return array.concat(buildList(value, length -1));
 };
+
 
 // 19. Implement FizzBuzz. Given integer n, return an array of the string representations of 1 to n.
 // For multiples of three, output 'Fizz' instead of the number.
@@ -315,12 +335,26 @@ var fizzBuzz = function(n) {
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function(array, value) {
+  //base case
+ if (array.length === 0) {
+   return 0;
+ }
+
+ // recursive case
+ var increment = array[0] === value ? 1 : 0;
+ return increment + countOccurrence(array.slice(1), value);
 };
+
 
 // 21. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
+  if(array.length === 1) {
+  return callback(array);
+}
+  return [callback(array[0])].concat(rMap(array.slice(1), callback));
 };
+
 
 // 22. Write a function that counts the number of times a key occurs in an object.
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
