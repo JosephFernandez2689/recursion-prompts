@@ -262,12 +262,21 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
-
-};
+  // base cases
+   if (str1 === '' && str2 === '') {
+     return true;
+   }
+   if (str1.charAt(0) !== str2.charAt(0)) {
+     return false;
+   }
+   // recursive case
+   return compareStr(str1.substr(1), str2.substr(1));
+  };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function(str) {
+
 };
 
 // 17. Reverse the order of an array
